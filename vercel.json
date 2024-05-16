@@ -1,6 +1,6 @@
 {
   "version": 2,
   "name": "kanban-board-backend",
-  "overwrites": [{ "src": "/server.js", "use": "@vercel/node" }],
+  "rewrites": [{ "src": "/server.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/dist/server.js" }]
 }
