@@ -2,5 +2,5 @@
   "version": 2,
   "name": "kanban-board-backend",
   "builds": [{ "src": "/server.ts", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/dist/server.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
