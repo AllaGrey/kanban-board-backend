@@ -5,14 +5,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const { PORT, MONGO_URL } = process.env;
+const { PORT, MONGO_URI } = process.env;
 
 app.listen(PORT || 3000, () => {
   console.log(`Server is running on port ${PORT}`);
 
-  if (MONGO_URL) {
+  if (MONGO_URI) {
     mongoose
-      .connect(MONGO_URL, {})
+      .connect(MONGO_URI, {})
       .then(() => console.log("Connected to MongoDB"))
       .catch((error: Error) => {
         console.log(error.message);
