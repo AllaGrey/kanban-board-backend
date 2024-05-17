@@ -7,12 +7,12 @@ const app_1 = __importDefault(require("./app"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { PORT, MONGO_URI } = process.env;
+const { PORT, MONGODB_URI } = process.env;
 app_1.default.listen(PORT || 3000, () => {
     console.log(`Server is running on port ${PORT}`);
-    if (MONGO_URI) {
+    if (MONGODB_URI) {
         mongoose_1.default
-            .connect(MONGO_URI, {})
+            .connect(MONGODB_URI, {})
             .then(() => console.log("Connected to MongoDB"))
             .catch((error) => {
             console.log(error.message);
