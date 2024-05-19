@@ -7,6 +7,12 @@ dotenv.config();
 
 const { PORT, MONGODB_URI } = process.env;
 
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined");
+}
+
+console.log("Attempting to connect to MongoDB...");
+
 app.listen(PORT || 3000, () => {
   console.log(`Server is running on port ${PORT}`);
 
@@ -15,7 +21,7 @@ app.listen(PORT || 3000, () => {
       .connect(MONGODB_URI, {})
       .then(() => console.log("Connected to MongoDB"))
       .catch((error: Error) => {
-        console.log(error.message);
+        console.log("MongoDB connection error:", error);
         process.exit(1);
       });
   }
