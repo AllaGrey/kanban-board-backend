@@ -13,16 +13,24 @@ if (!MONGODB_URI) {
 
 console.log("Attempting to connect to MongoDB...");
 
-app.listen(PORT || 3000, () => {
-  console.log(`Server is running on port ${PORT}`);
+const dbConnection = async () =>
+  mongoose
+    .connect(MONGODB_URI, {})
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error: Error) => {
+      console.log("MongoDB connection error:", error);
+      process.exit(1);
+    });
 
-  if (MONGODB_URI) {
-    mongoose
-      .connect(MONGODB_URI, {})
-      .then(() => console.log("Connected to MongoDB"))
-      .catch((error: Error) => {
-        console.log("MongoDB connection error:", error);
-        process.exit(1);
-      });
-  }
-}) as Server;
+const startServer = () => {
+  app.listen(PORT || 3000, () => {
+    console.log(`Server is running on port ${PORT}`);
+  }) as Server;
+};
+
+const init = async () => {
+  await dbConnection();
+  startServer();
+};
+
+init();
