@@ -1,21 +1,5 @@
-import { Schema, SchemaTypes, Types, model } from "mongoose";
-
-enum CARD_STATUS {
-  TODO = "TODO",
-  IN_PROGRESS = "IN_PROGRESS",
-  DONE = "DONE",
-}
-
-interface ICard {
-  title: string;
-  description: string;
-  boardId: string;
-  status: CARD_STATUS;
-  order: number;
-  createdAt: Date;
-  updatedAt: Date;
-  _id: Types.ObjectId;
-}
+import { Schema, SchemaTypes, model } from "mongoose";
+import { CARD_STATUS } from "../constants/constants";
 
 const cardSchema = new Schema(
   {
@@ -27,12 +11,10 @@ const cardSchema = new Schema(
       type: String,
       required: [true, "Description is required"],
     },
-    boardId: {
-      type: String,
-      required: [true, "boardId is required"],
-    },
     status: {
-      type: CARD_STATUS,
+      type: String,
+      enum: Object.values(CARD_STATUS),
+      default: CARD_STATUS.TODO,
       required: [true, "Status is required"],
     },
     order: {
@@ -45,7 +27,7 @@ const cardSchema = new Schema(
       required: [true, "Board is required"],
     },
   },
-  { timestamp: true, versionKey: true }
+  { timestamp: true, versionKey: false }
 );
 
 export const Card = model("Card", cardSchema);

@@ -9,14 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.boardDataValidation = void 0;
-const services_1 = require("../../services");
-const utils_1 = require("../../utils");
-const boardDataValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { error } = (0, services_1.addBoardDataValidation)(req.body);
-    if (error) {
-        return next((0, utils_1.HttpError)(400, error.message));
-    }
-    next();
+exports.checkBoard = void 0;
+const board_1 = require("../models/board");
+const HttpError_1 = require("../utils/HttpError");
+const checkBoard = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const board = yield board_1.Board.findById({ _id: id });
+    if (!board)
+        throw (0, HttpError_1.HttpError)(400, "Board not found");
+    return board;
 });
-exports.boardDataValidation = boardDataValidation;
+exports.checkBoard = checkBoard;

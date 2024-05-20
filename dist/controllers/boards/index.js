@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteBoardCtrl = exports.updateBoardCtrl = exports.postBoardCtrl = exports.getBoardByIdCtrl = exports.getAllBoardsCtrl = void 0;
+var getAllBoards_1 = require("./getAllBoards");
+Object.defineProperty(exports, "getAllBoardsCtrl", { enumerable: true, get: function () { return getAllBoards_1.getAllBoardsCtrl; } });
+var getBoardById_1 = require("./getBoardById");
+Object.defineProperty(exports, "getBoardByIdCtrl", { enumerable: true, get: function () { return getBoardById_1.getBoardByIdCtrl; } });
+var postBoard_1 = require("./postBoard");
+Object.defineProperty(exports, "postBoardCtrl", { enumerable: true, get: function () { return postBoard_1.postBoardCtrl; } });
+var updateBoard_1 = require("./updateBoard");
+Object.defineProperty(exports, "updateBoardCtrl", { enumerable: true, get: function () { return updateBoard_1.updateBoardCtrl; } });
+var deleteBoard_1 = require("./deleteBoard");
+Object.defineProperty(exports, "deleteBoardCtrl", { enumerable: true, get: function () { return deleteBoard_1.deleteBoardCtrl; } });

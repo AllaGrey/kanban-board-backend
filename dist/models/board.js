@@ -7,8 +7,5 @@ const boardSchema = new mongoose_1.Schema({
         type: "string",
         required: [true, "title is required"],
     },
-    cards: {
-        type: [{ type: mongoose_1.Types.ObjectId, ref: "Card" }],
-    },
 }, { timestamps: true, versionKey: false });
 exports.Board = (0, mongoose_1.model)("Board", boardSchema);

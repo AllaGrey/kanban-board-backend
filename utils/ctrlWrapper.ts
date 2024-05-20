@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { HttpError, IHttpError } from "./HttpError";
 
 export const ctrlWrapper = (
   ctrl: (req: Request, res: Response, next: NextFunction) => Promise<void>
@@ -11,7 +12,12 @@ export const ctrlWrapper = (
     try {
       await ctrl(req, res, next);
     } catch (err) {
-      next(err);
+      const error = err as IHttpError;
+      if (error.status) {
+        next(error);
+      } else {
+        next(HttpError(500, "Internal Server Error"));
+      }
     }
   };
 };

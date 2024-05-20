@@ -2,12 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Card = void 0;
 const mongoose_1 = require("mongoose");
-var CARD_STATUS;
-(function (CARD_STATUS) {
-    CARD_STATUS["TODO"] = "TODO";
-    CARD_STATUS["IN_PROGRESS"] = "IN_PROGRESS";
-    CARD_STATUS["DONE"] = "DONE";
-})(CARD_STATUS || (CARD_STATUS = {}));
+const constants_1 = require("../constants/constants");
 const cardSchema = new mongoose_1.Schema({
     title: {
         type: String,
@@ -17,12 +12,10 @@ const cardSchema = new mongoose_1.Schema({
         type: String,
         required: [true, "Description is required"],
     },
-    boardId: {
-        type: String,
-        required: [true, "boardId is required"],
-    },
     status: {
-        type: CARD_STATUS,
+        type: String,
+        enum: Object.values(constants_1.CARD_STATUS),
+        default: constants_1.CARD_STATUS.TODO,
         required: [true, "Status is required"],
     },
     order: {
@@ -34,5 +27,5 @@ const cardSchema = new mongoose_1.Schema({
         ref: "Board",
         required: [true, "Board is required"],
     },
-}, { timestamp: true, versionKey: true });
+}, { timestamp: true, versionKey: false });
 exports.Card = (0, mongoose_1.model)("Card", cardSchema);

@@ -9,14 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.boardDataValidation = void 0;
-const services_1 = require("../../services");
+exports.getBoardCardsCtrl = void 0;
 const utils_1 = require("../../utils");
-const boardDataValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { error } = (0, services_1.addBoardDataValidation)(req.body);
-    if (error) {
-        return next((0, utils_1.HttpError)(400, error.message));
-    }
-    next();
+const getBoardCards = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json("success");
 });
-exports.boardDataValidation = boardDataValidation;
+exports.getBoardCardsCtrl = (0, utils_1.ctrlWrapper)(getBoardCards);

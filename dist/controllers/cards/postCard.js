@@ -9,14 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.boardDataValidation = void 0;
-const services_1 = require("../../services");
+exports.postCardCtrl = void 0;
+const models_1 = require("../../models");
 const utils_1 = require("../../utils");
-const boardDataValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { error } = (0, services_1.addBoardDataValidation)(req.body);
-    if (error) {
-        return next((0, utils_1.HttpError)(400, error.message));
-    }
-    next();
+const postCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { title, description, boardId, status, order } = req.body;
+    const card = yield models_1.Card.create({
+        title,
+        description,
+        status,
+        order,
+        board: { _id: boardId },
+    });
+    res.status(201).json(card);
 });
-exports.boardDataValidation = boardDataValidation;
+exports.postCardCtrl = (0, utils_1.ctrlWrapper)(postCard);

@@ -9,14 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.boardDataValidation = void 0;
-const services_1 = require("../../services");
+exports.deleteBoardCtrl = void 0;
+const models_1 = require("../../models");
 const utils_1 = require("../../utils");
-const boardDataValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { error } = (0, services_1.addBoardDataValidation)(req.body);
-    if (error) {
-        return next((0, utils_1.HttpError)(400, error.message));
-    }
-    next();
+const deleteBoard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    yield models_1.Board.findOneAndDelete({ _id: id });
+    res.status(200).json({ message: "Board was deleted successfully" });
 });
-exports.boardDataValidation = boardDataValidation;
+exports.deleteBoardCtrl = (0, utils_1.ctrlWrapper)(deleteBoard);

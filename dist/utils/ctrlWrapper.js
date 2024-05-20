@@ -10,13 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ctrlWrapper = void 0;
+const HttpError_1 = require("./HttpError");
 const ctrlWrapper = (ctrl) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield ctrl(req, res, next);
         }
         catch (err) {
-            next(err);
+            const error = err;
+            if (error.status) {
+                next(error);
+            }
+            else {
+                next((0, HttpError_1.HttpError)(500, "Internal Server Error"));
+            }
         }
     });
 };
