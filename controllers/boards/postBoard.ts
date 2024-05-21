@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Board } from "../../models";
 import { ctrlWrapper } from "../../utils";
 
-const postBoard = async (req: Request, res: Response) => {
+const postBoard = async (req: Request, res: Response): Promise<void> => {
   const { title } = req.body;
 
   const board = await Board.create({ title });

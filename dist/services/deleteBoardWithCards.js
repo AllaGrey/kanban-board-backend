@@ -9,13 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBoardCtrl = void 0;
-const models_1 = require("../../models");
-const utils_1 = require("../../utils");
-const updateBoard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const { title } = req.body;
-    const result = yield models_1.Board.findOneAndUpdate({ _id: id }, { title }, { new: true });
-    res.status(200).json(result);
+exports.deleteBoardWithCards = void 0;
+const models_1 = require("../models");
+const utils_1 = require("../utils");
+const deleteBoardWithCards = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const board = yield models_1.Board.findById({ _id: id });
+    if (!board)
+        throw (0, utils_1.HttpError)(404, "Board not found");
+    console.log(board);
+    const cards = yield models_1.Card.deleteMany({ board: id });
+    console.log(cards);
+    return;
 });
-exports.updateBoardCtrl = (0, utils_1.ctrlWrapper)(updateBoard);
+exports.deleteBoardWithCards = deleteBoardWithCards;

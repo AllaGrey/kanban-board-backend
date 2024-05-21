@@ -17,7 +17,6 @@ const updateCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const card = yield models_1.Card.findByIdAndUpdate({ _id: id }, req.body, {
         new: true,
     });
-    console.log(card);
     res.status(200).json(card);
 });
 exports.updateCardCtrl = (0, utils_1.ctrlWrapper)(updateCard);

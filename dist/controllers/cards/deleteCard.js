@@ -15,6 +15,8 @@ const models_1 = require("../../models");
 const deleteCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const card = yield models_1.Card.findByIdAndDelete({ _id: id });
-    res.status(200).json({ message: "Card deleted" });
+    if (!card)
+        throw (0, utils_1.HttpError)(404, "Card not found");
+    res.status(200).json({ message: "Card was successful deleted" });
 });
 exports.deleteCardCtrl = (0, utils_1.ctrlWrapper)(deleteCard);

@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteBoardCtrl = void 0;
-const models_1 = require("../../models");
 const utils_1 = require("../../utils");
+const deleteBoardWithCards_1 = require("../../services/deleteBoardWithCards");
 const deleteBoard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    yield models_1.Board.findOneAndDelete({ _id: id });
+    yield (0, deleteBoardWithCards_1.deleteBoardWithCards)(id);
     res.status(200).json({ message: "Board was deleted successfully" });
 });
 exports.deleteBoardCtrl = (0, utils_1.ctrlWrapper)(deleteBoard);
