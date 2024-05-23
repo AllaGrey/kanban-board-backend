@@ -10,25 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBoardWithCards = void 0;
-const constants_1 = require("../constants/constants");
 const models_1 = require("../models");
 const utils_1 = require("../utils");
+const formatBoard_1 = require("./formatBoard");
 const getBoardWithCards = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const board = yield models_1.Board.findById({ _id: id });
     const cards = yield models_1.Card.find({ board: board });
     if (!board)
         throw (0, utils_1.HttpError)(404, "Board not found");
-    const sortedCards = {
-        todo: cards
-            .filter((card) => card.status === constants_1.CARD_STATUS.TODO)
-            .sort((a, b) => a.order - b.order),
-        inProgress: cards
-            .filter((card) => card.status === constants_1.CARD_STATUS.IN_PROGRESS)
-            .sort((a, b) => a.order - b.order),
-        done: cards
-            .filter((card) => card.status === constants_1.CARD_STATUS.DONE)
-            .sort((a, b) => a.order - b.order),
-    };
-    return { id: board._id, title: board.title, cards: sortedCards };
+    const formattedBoard = (0, formatBoard_1.formatBoard)(board, cards);
+    return formattedBoard;
 });
 exports.getBoardWithCards = getBoardWithCards;

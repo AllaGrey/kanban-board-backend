@@ -12,9 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postBoardCtrl = void 0;
 const models_1 = require("../../models");
 const utils_1 = require("../../utils");
+const formatBoard_1 = require("../../services/formatBoard");
 const postBoard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title } = req.body;
-    const board = yield models_1.Board.create({ title });
-    res.status(201).json({ message: board });
+    const boardDoc = yield models_1.Board.create({ title });
+    const board = boardDoc.toObject();
+    const formattedBoard = (0, formatBoard_1.formatBoard)(board);
+    res.status(201).json(formattedBoard);
 });
 exports.postBoardCtrl = (0, utils_1.ctrlWrapper)(postBoard);
