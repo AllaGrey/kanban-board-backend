@@ -13,12 +13,10 @@ exports.deleteBoardWithCards = void 0;
 const models_1 = require("../models");
 const utils_1 = require("../utils");
 const deleteBoardWithCards = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const board = yield models_1.Board.findById({ _id: id });
+    const board = yield models_1.Board.findByIdAndDelete({ _id: id });
     if (!board)
         throw (0, utils_1.HttpError)(404, "Board not found");
-    console.log(board);
-    const cards = yield models_1.Card.deleteMany({ board: id });
-    console.log(cards);
+    yield models_1.Card.deleteMany({ board: id });
     return;
 });
 exports.deleteBoardWithCards = deleteBoardWithCards;
