@@ -6,6 +6,7 @@ import {
   postCardCtrl,
   updateCardCtrl,
 } from "../../controllers/cards";
+import { updateManyCardsCtrl } from "../../controllers/cards/updateManyCards";
 
 const cardsRouter: Router = express.Router();
 
@@ -16,6 +17,8 @@ cardsRouter.get("/:id", (req, res) => {});
 cardsRouter.post("/", cardDataValidation, postCardCtrl);
 
 cardsRouter.put("/:id", cardDataValidation, updateCardCtrl);
+
+cardsRouter.put("/", cardDataValidation, updateManyCardsCtrl);
 
 cardsRouter.delete("/:id", deleteCardCtrl);
 

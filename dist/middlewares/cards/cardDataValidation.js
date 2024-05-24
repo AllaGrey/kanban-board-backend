@@ -13,12 +13,24 @@ exports.cardDataValidation = void 0;
 const services_1 = require("../../services");
 const utils_1 = require("../../utils");
 const cardDataValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { error, value } = (0, services_1.addCardDataValidation)(req.body);
-    if (error) {
-        return next((0, utils_1.HttpError)(400, error.message));
+    const data = req.body;
+    if (Array.isArray(data)) {
+        for (const card of data) {
+            const { error, value } = (0, services_1.addCardDataValidation)(card);
+            if (error) {
+                return next((0, utils_1.HttpError)(400, error.message));
+            }
+            yield (0, services_1.checkBoard)(value.boardId);
+        }
     }
-    yield (0, services_1.checkBoard)(value.boardId);
-    req.body = value;
+    else {
+        const { error, value } = (0, services_1.addCardDataValidation)(data);
+        if (error) {
+            return next((0, utils_1.HttpError)(400, error.message));
+        }
+        yield (0, services_1.checkBoard)(value.boardId);
+        req.body = value;
+    }
     next();
 });
 exports.cardDataValidation = cardDataValidation;
