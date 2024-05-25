@@ -11,31 +11,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateManyCardsWithBoard = void 0;
 const models_1 = require("../models");
-const utils_1 = require("../utils");
-const formatBoard_1 = require("./formatBoard");
+const getBoardWithCards_1 = require("./getBoardWithCards");
 const updateManyCardsWithBoard = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const updateOperations = data.map((card) => ({
         updateOne: {
             filter: { _id: card._id },
             update: {
                 $set: {
-                    title: card.title,
-                    description: card.description,
+                    // title: card.title,
+                    // description: card.description,
                     status: card.status,
                     order: card.order,
-                    boardId: card.boardId,
+                    // boardId: card.boardId,
                 },
             },
         },
     }));
     yield models_1.Card.bulkWrite(updateOperations);
-    const board = (yield models_1.Board.findById(data[0].boardId).lean());
-    if (!board)
-        throw (0, utils_1.HttpError)(404, "Board not found");
-    const updatedCards = (yield models_1.Card.find({ board: board === null || board === void 0 ? void 0 : board._id }));
-    if (!updatedCards)
-        throw (0, utils_1.HttpError)(404, "Cards not found");
-    const result = (0, formatBoard_1.formatBoard)(board, updatedCards);
+    // const board = (await Board.findById(data[0].boardId).lean()) as IBoard;
+    // if (!board) throw HttpError(404, "Board not found");
+    // const updatedCards = (await Card.find({ board: board?._id })) as ICard[];
+    // if (!updatedCards) throw HttpError(404, "Cards not found");
+    // const result = formatBoard(board, updatedCards);
+    const result = yield (0, getBoardWithCards_1.getBoardWithCards)(data[0].boardId);
     return result;
 });
 exports.updateManyCardsWithBoard = updateManyCardsWithBoard;

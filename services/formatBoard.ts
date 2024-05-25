@@ -1,18 +1,21 @@
-import { CARD_STATUS, IBoard, ICard } from "../constants/constants";
+import { IBoard, ICard } from "../constants/constants";
+import { formatCards } from "./formatCards";
+import { sortCards } from "./sortCards";
 
-const formatBoard = (board: IBoard, cards: ICard[] = []) => {
-  const sortedCards = {
-    todo: cards
-      .filter((card) => card.status === CARD_STATUS.TODO)
-      .sort((a, b) => a.order - b.order),
-    inProgress: cards
-      .filter((card) => card.status === CARD_STATUS.IN_PROGRESS)
-      .sort((a, b) => a.order - b.order),
-    done: cards
-      .filter((card) => card.status === CARD_STATUS.DONE)
-      .sort((a, b) => a.order - b.order),
-  };
-  return { id: board._id, title: board.title, cards: sortedCards } as IBoard;
+interface ICardWithBoard extends ICard {
+  board?: string;
+}
+
+const formatBoard = (boardData: IBoard, cards: ICardWithBoard[] = []) => {
+  const formattedCards = formatCards(cards);
+
+  const sortedCards = sortCards(formattedCards);
+
+  return {
+    id: boardData._id,
+    title: boardData.title,
+    cards: sortedCards,
+  } as IBoard;
 };
 
 export { formatBoard };

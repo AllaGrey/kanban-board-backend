@@ -2,3 +2,8 @@ export { addBoardDataValidation } from "./addBoardDataValidation";
 export { addCardDataValidation } from "./addCardDataValidation";
 export { checkBoard } from "./checkBoard";
 export { getBoardWithCards } from "./getBoardWithCards";
+export { deleteBoardWithCards } from "./deleteBoardWithCards";
+export { formatBoard } from "./formatBoard";
+export { formatCards } from "./formatCards";
+export { updateManyCardsWithBoard } from "./updateManyCardsWithBoard";
+export { sortCards } from "./sortCards";
