@@ -12,11 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateCardCtrl = void 0;
 const utils_1 = require("../../utils");
 const models_1 = require("../../models");
+const services_1 = require("../../services");
 const updateCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const card = yield models_1.Card.findByIdAndUpdate({ _id: id }, req.body, {
+    const card = (yield models_1.Card.findByIdAndUpdate({ _id: id }, req.body, {
         new: true,
-    });
-    res.status(200).json(card);
+    }));
+    if (!card)
+        throw (0, utils_1.HttpError)(404, "Card not found");
+    const formattedCard = (0, services_1.formatOneCard)(card);
+    res.status(200).json(formattedCard);
 });
 exports.updateCardCtrl = (0, utils_1.ctrlWrapper)(updateCard);

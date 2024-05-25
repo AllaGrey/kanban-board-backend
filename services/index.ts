@@ -7,3 +7,4 @@ export { formatBoard } from "./formatBoard";
 export { formatCards } from "./formatCards";
 export { updateManyCardsWithBoard } from "./updateManyCardsWithBoard";
 export { sortCards } from "./sortCards";
+export { formatOneCard } from "./formatOneCard";

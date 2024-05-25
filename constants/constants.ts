@@ -28,3 +28,7 @@ export interface IBoard {
   updatedAt?: Date;
   _id?: Types.ObjectId;
 }
+
+export interface ICardWithBoard extends ICard {
+  board?: string;
+}

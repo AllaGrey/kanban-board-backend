@@ -1,7 +1,7 @@
 import { ICard, ICardWithBoard } from "../constants/constants";
 
-export const formatCards = (cards: ICardWithBoard[]): ICard[] => {
-  return cards.map((card) => ({
+export const formatOneCard = (card: ICardWithBoard): ICard => {
+  return {
     _id: card._id,
     title: card.title,
     description: card.description,
@@ -9,5 +9,5 @@ export const formatCards = (cards: ICardWithBoard[]): ICard[] => {
     order: card.order,
     boardId: card.board,
     board: undefined,
-  })) as ICard[];
+  } as ICard;
 };

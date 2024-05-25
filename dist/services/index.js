@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sortCards = exports.updateManyCardsWithBoard = exports.formatCards = exports.formatBoard = exports.deleteBoardWithCards = exports.getBoardWithCards = exports.checkBoard = exports.addCardDataValidation = exports.addBoardDataValidation = void 0;
+exports.formatOneCard = exports.sortCards = exports.updateManyCardsWithBoard = exports.formatCards = exports.formatBoard = exports.deleteBoardWithCards = exports.getBoardWithCards = exports.checkBoard = exports.addCardDataValidation = exports.addBoardDataValidation = void 0;
 var addBoardDataValidation_1 = require("./addBoardDataValidation");
 Object.defineProperty(exports, "addBoardDataValidation", { enumerable: true, get: function () { return addBoardDataValidation_1.addBoardDataValidation; } });
 var addCardDataValidation_1 = require("./addCardDataValidation");
@@ -19,3 +19,5 @@ var updateManyCardsWithBoard_1 = require("./updateManyCardsWithBoard");
 Object.defineProperty(exports, "updateManyCardsWithBoard", { enumerable: true, get: function () { return updateManyCardsWithBoard_1.updateManyCardsWithBoard; } });
 var sortCards_1 = require("./sortCards");
 Object.defineProperty(exports, "sortCards", { enumerable: true, get: function () { return sortCards_1.sortCards; } });
+var formatOneCard_1 = require("./formatOneCard");
+Object.defineProperty(exports, "formatOneCard", { enumerable: true, get: function () { return formatOneCard_1.formatOneCard; } });
