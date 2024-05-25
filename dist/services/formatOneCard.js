@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatOneCard = void 0;
 const formatOneCard = (card) => {
     return {
-        _id: card._id,
+        id: card._id,
         title: card.title,
         description: card.description,
         status: card.status,
