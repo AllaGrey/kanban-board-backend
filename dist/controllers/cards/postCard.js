@@ -21,6 +21,15 @@ const postCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         order,
         board: { _id: boardId },
     });
-    res.status(201).json(card);
+    const formattedCard = {
+        _id: card._id,
+        title: card.title,
+        description: card.description,
+        status: card.status,
+        order: card.order,
+        boardId: card.board._id,
+        board: undefined,
+    };
+    res.status(201).json(formattedCard);
 });
 exports.postCardCtrl = (0, utils_1.ctrlWrapper)(postCard);
