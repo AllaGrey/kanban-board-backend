@@ -16,7 +16,7 @@ const postCard = async (req: Request, res: Response): Promise<void> => {
   });
 
   const formattedCard = {
-    _id: card._id,
+    id: card._id,
     title: card.title,
     description: card.description,
     status: card.status,

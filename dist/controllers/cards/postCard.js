@@ -22,7 +22,7 @@ const postCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         board: { _id: boardId },
     });
     const formattedCard = {
-        _id: card._id,
+        id: card._id,
         title: card.title,
         description: card.description,
         status: card.status,
