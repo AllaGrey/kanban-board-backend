@@ -15,6 +15,7 @@ export interface ICard {
   createdAt?: Date;
   updatedAt?: Date;
   _id?: Types.ObjectId;
+  id?: string;
 }
 
 export interface IBoard {
