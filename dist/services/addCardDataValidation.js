@@ -37,7 +37,7 @@ const addCardDataValidation = (card) => {
             "any.required": "boardId is required",
             "string.empty": "boardId is required",
         }),
-        _id: joi_1.default.string().messages({
+        id: joi_1.default.string().messages({
             "string.base": "id must be a string",
         }),
     })

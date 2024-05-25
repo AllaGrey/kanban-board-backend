@@ -33,7 +33,7 @@ export const addCardDataValidation = (card: ICard) => {
         "any.required": "boardId is required",
         "string.empty": "boardId is required",
       }),
-      _id: Joi.string().messages({
+      id: Joi.string().messages({
         "string.base": "id must be a string",
       }),
     })
