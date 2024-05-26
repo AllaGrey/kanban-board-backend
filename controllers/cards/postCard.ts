@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { Card } from "../../models";
 import { ctrlWrapper } from "../../utils";
-import { formatOneCard } from "../../services";
-import { ICardWithBoard } from "../../constants/constants";
 
 const postCard = async (req: Request, res: Response): Promise<void> => {
   const { title, description, boardId, status, order } = req.body;
