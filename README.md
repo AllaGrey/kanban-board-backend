@@ -27,10 +27,10 @@ This repository contains the backend implementation for the Kanban Board project
 
 ### Cards
 
-- `GET /boards/:boardId/cards`: Get all cards for a specific board.
-- `POST /boards/:boardId/cards`: Add a new card to a board.
-- `PUT /boards/:boardId/cards/:cardId`: Update a card in a board.
-- `DELETE /boards/:boardId/cards/:cardId`: Delete a card from a board.
+- `GET /boards/cards`: Get all cards for a specific board.
+- `POST /boards/cards`: Add a new card to a board.
+- `PUT /boards/cards/:cardId`: Update a card in a board.
+- `DELETE /boards/cards/:cardId`: Delete a card from a board.
 
 ## Testing
 
